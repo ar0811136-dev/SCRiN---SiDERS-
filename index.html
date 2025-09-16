@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Sign In / Sign Up Demo</title>
+  <style>
+    #nameField {
+      max-height: 0;              
+      opacity: 0;
+      overflow: hidden;
+      transition: max-height 0.5s ease, opacity 0.5s ease, padding 0.5s ease;
+      background: #f6f6f6;
+      padding: 0 10px;  /* collapsed padding by default */
+      margin-bottom: 10px;
+    }
+
+    /* visible state */
+    #nameField.show {
+      max-height: 100px;   
+      opacity: 1;
+      padding: 10px;       /* restore padding smoothly */
+    }
+
+    .disable {
+      opacity: 0.5;
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body>
+  <h1 id="title">SIGN IN</h1>
+
+  <div id="nameField">
+    <label>Name: <input type="text" /></label>
+  </div>
+
+  <button id="signinbtn" class="disable">Sign In</button>
+  <button id="signupbtn">Sign Up</button>
+
+  <script>
+    const signinbtn = document.getElementById('signinbtn');
+    const signupbtn = document.getElementById('signupbtn');
+    const nameField = document.getElementById('nameField');
+    const title = document.getElementById('title');
+
+    signinbtn.addEventListener('click', () => {
+      nameField.classList.remove('show');   // hide smoothly
+      title.textContent = 'SIGN IN';
+      signinbtn.classList.add('disable');
+      signupbtn.classList.remove('disable');
+    });
+
+    signupbtn.addEventListener('click', () => {
+      nameField.classList.add('show');      // show smoothly
+      title.textContent = 'SIGN UP';
+      signupbtn.classList.add('disable');
+      signinbtn.classList.remove('disable');
+    });
+  </script>
+</body>
+</html>
